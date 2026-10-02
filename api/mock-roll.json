@@ -1,0 +1,7 @@
+{
+  "status": "ok",
+  "engine": "rng-lab-core",
+  "version": "1.0.0",
+  "mode": "static-mock",
+  "note": "Reserved response shape for a future server endpoint."
+}
