@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#090b10">
+  <meta name="description" content="RNG Lab — probability playground, roll analytics and deterministic seed tools.">
+  <title>RNG Lab — Probability Playground</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="noise"></div>
+<header class="topbar">
+  <a class="brand" href="#home"><span class="brand-mark">R</span><span>RNG<span class="muted">/</span>LAB</span><small>v1.0.0</small></a>
+  <nav>
+    <a href="#simulator">Simulator</a><a href="#analytics">Analytics</a><a href="#odds">Odds</a><a href="#changelog">Changelog</a>
+  </nav>
+  <button class="ghost" id="themeBtn" aria-label="Toggle theme">◐</button>
+</header>
+
+<main id="home">
+<section class="hero">
+  <div class="eyebrow"><i></i> PUBLIC BUILD · STABLE</div>
+  <h1>Roll the odds.<br><em>Know the numbers.</em></h1>
+  <p>A deterministic RNG playground for testing drop tables, pity systems, streaks, and absurdly unlucky outcomes.</p>
+  <div class="hero-actions"><a class="primary" href="#simulator">Open simulator <span>↗</span></a><a class="secondary" href="#odds">View drop table</a></div>
+  <div class="hero-stats"><div><b id="heroRolls">0</b><span>rolls this session</span></div><div><b>8</b><span>rarity tiers</span></div><div><b>0.001%</b><span>lowest base rate</span></div></div>
+</section>
+
+<section id="simulator" class="section">
+  <div class="section-head"><div><span class="kicker">01 / SIMULATOR</span><h2>Roll engine</h2></div><span class="status"><i></i> engine online</span></div>
+  <div class="grid simulator-grid">
+    <article class="panel roll-panel">
+      <div class="panel-top"><span>LIVE ROLL</span><span id="seedLabel">SEED —</span></div>
+      <div class="result" id="result"><div class="result-rarity">READY</div><strong>?</strong><p>Press roll to generate an outcome</p></div>
+      <button class="roll" id="rollBtn">ROLL <span>↵</span></button>
+      <div class="quick"><button data-rolls="10">×10</button><button data-rolls="100">×100</button><button data-rolls="1000">×1,000</button><button data-rolls="10000">×10,000</button></div>
+    </article>
+    <aside class="panel controls">
+      <div class="panel-title">ENGINE CONFIG</div>
+      <label>Seed<input id="seed" value="RNG-2026-10-02"></label>
+      <label>Luck modifier<div class="range-row"><input id="luck" type="range" min="0" max="300" value="100"><output id="luckOut">100%</output></div></label>
+      <label>Pity threshold<input id="pity" type="number" min="0" max="100000" value="100"></label>
+      <div class="toggle-row"><span>Guaranteed rare on pity</span><input id="pityToggle" type="checkbox" checked></div>
+      <button class="outline" id="resetBtn">Reset session</button>
+    </aside>
+  </div>
+</section>
+
+<section id="analytics" class="section">
+  <div class="section-head"><div><span class="kicker">02 / ANALYTICS</span><h2>Session telemetry</h2></div><button class="text-btn" id="exportBtn">Export JSON ↓</button></div>
+  <div class="metric-grid">
+    <div class="metric"><span>TOTAL ROLLS</span><b id="total">0</b><small>current session</small></div>
+    <div class="metric"><span>RARE+</span><b id="rare">0</b><small id="rareRate">0.00% observed</small></div>
+    <div class="metric"><span>BEST STREAK</span><b id="best">0</b><small>common avoidance</small></div>
+    <div class="metric"><span>PITY COUNT</span><b id="pityCount">0</b><small id="pityState">0 rolls to threshold</small></div>
+  </div>
+  <div class="grid chart-grid">
+    <article class="panel chart-panel"><div class="panel-title">DROP DISTRIBUTION</div><div id="bars" class="bars"></div></article>
+    <article class="panel feed-panel"><div class="panel-title">ROLL FEED <button id="clearFeed">clear</button></div><div id="feed" class="feed"><div class="empty">No rolls yet.</div></div></article>
+  </div>
+</section>
+
+<section id="odds" class="section">
+  <div class="section-head"><div><span class="kicker">03 / DROP TABLE</span><h2>Probability matrix</h2></div><span class="muted">base rates · v1</span></div>
+  <div class="panel table-wrap"><table><thead><tr><th>Tier</th><th>Color</th><th>Base odds</th><th>1 in</th><th>Weight</th></tr></thead><tbody id="oddsBody"></tbody></table></div>
+</section>
+
+<section class="section">
+  <div class="section-head"><div><span class="kicker">04 / DIAGNOSTICS</span><h2>Engine health</h2></div></div>
+  <div class="panel diagnostics">
+    <div><span><i class="dot ok"></i> PRNG core</span><b>OPERATIONAL</b></div>
+    <div><span><i class="dot ok"></i> Drop table</span><b>8 TIERS LOADED</b></div>
+    <div><span><i class="dot ok"></i> Pity handler</span><b>ARMED</b></div>
+    <div><span><i class="dot"></i> Remote API</span><b>LOCAL MOCK</b></div>
+  </div>
+</section>
+
+<section id="changelog" class="section changelog">
+  <div class="section-head"><div><span class="kicker">05 / CHANGELOG</span><h2>Release history</h2></div></div>
+  <div class="timeline">
+    <article><span>02 OCT 2026</span><h3>v1.0.0 · Public launch</h3><p>RNG simulator, deterministic seeds, pity tracking, analytics, export, responsive UI and offline shell.</p></article>
+    <article><span>01 OCT 2026</span><h3>v0.9.4 · Diagnostics</h3><p>Added engine health states and local mock API boundary.</p></article>
+    <article><span>29 SEP 2026</span><h3>v0.8.0 · Analytics</h3><p>Introduced distribution telemetry and roll feed.</p></article>
+  </div>
+</section>
+</main>
+<footer><span>RNG/LAB</span><span>Built for probability testing · No accounts · No tracking</span><span id="clock">—</span></footer>
+<script src="app.js"></script>
+</body>
+</html>
