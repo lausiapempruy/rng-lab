@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "currency": "weight",
+  "tiers": [
+    {"id":"mythic","name":"Mythic","baseRate":0.001},
+    {"id":"legendary","name":"Legendary","baseRate":0.009},
+    {"id":"epic","name":"Epic","baseRate":0.09},
+    {"id":"rare","name":"Rare","baseRate":0.9},
+    {"id":"uncommon","name":"Uncommon","baseRate":9},
+    {"id":"common","name":"Common","baseRate":30},
+    {"id":"basic","name":"Basic","baseRate":40},
+    {"id":"junk","name":"Junk","baseRate":20}
+  ]
+}
